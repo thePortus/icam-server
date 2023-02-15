@@ -34,11 +34,7 @@ Thenm, modify the following files with your desired accounts/passwords/ports
 
 Now, launch the docker containers with `docker compose up -d`.
 
-Get SSL certificates by running
-
-``` sh
-docker compose run certbot certonly --webroot --webroot-path /var/www/html/ --email sample@your_domain --agree-tos --no-eff-email -d your_domain -d www.your_domain
-```
+The run command in our `docker-compose.yml` should have gotten the SSL certifictes for us already.
 
 After docker is up... use `docker exec` to shell into the server container...
 
