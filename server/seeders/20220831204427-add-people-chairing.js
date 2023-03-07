@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with links between people and panels.
+ * @author David J. Thomas
+ */
+
 const peopleChairing = require('./import/data/people-chairing.json');
 
 module.exports = {

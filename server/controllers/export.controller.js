@@ -1,3 +1,8 @@
+/**
+ * @file Controller for exporting database data for backup
+ * @author David J. Thomas
+ */
+
 const db = require('../models');
 const Op = db.Sequelize.Op;
 
@@ -41,6 +46,7 @@ exports.findAll = (req, res) => {
     presenterAffiliations: []
   };
 
+  // Nest each request for async chaining
   Conference.findAll()
     .then(conferenceData => {
       Discipline.findAll()
@@ -75,6 +81,7 @@ exports.findAll = (req, res) => {
                                                                 .then(presentationTopicData => {
                                                                   PresenterAffiliation.findAll()
                                                                     .then(presenterAffiliationData => {
+                                                                      // store all response data
                                                                       responseData = {
                                                                         conferences: conferenceData,
                                                                         disciplines: disciplineData,

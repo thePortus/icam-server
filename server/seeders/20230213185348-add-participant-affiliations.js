@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with links between people and institutions, as participants
+ * @author David J. Thomas
+ */
+
 const participantAffiliations = require('./import/data/participant-affiliations.json');
 
 module.exports = {

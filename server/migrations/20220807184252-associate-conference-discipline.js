@@ -1,3 +1,8 @@
+/**
+ * @file Creates the n:m ConferenceDisciplines table in the database
+ * @author David J. Thomas
+ */
+
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {

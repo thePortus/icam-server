@@ -1,9 +1,15 @@
+/**
+ * @file Routes for modifying links between conference participants and institutions.
+ * @author David J. Thomas
+ */
+
 const auth = require('../middleware/auth');
 const limitRate = require('../middleware/limit-rate');
 
 module.exports = app => {
   const controller = require('../controllers/participant-affiliation.controller.js');
   var router = require('express').Router();
+  // Post item
   router.post('/', limitRate, auth.verifyAdminToken, controller.create);
   // Retrieve all
   router.get('/', controller.findAll);

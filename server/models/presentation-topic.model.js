@@ -1,20 +1,21 @@
+/**
+ * @file Defines the model that presentations with their topics
+ * @author David J. Thomas
+ */
+
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class PresentationTopic extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
+      // presentations
       PresentationTopic.belongsTo(models.presentations, {
         foreignKey: 'presentationId',
         as: 'presentation',
         onDelete: 'NO ACTION',
       });
+      // topics
       PresentationTopic.belongsTo(models.topics, {
         foreignKey: 'topicId',
         as: 'topic',
@@ -23,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   PresentationTopic.init({
+    // id of presentation
     presentationId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -31,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       }
     },
+    // id of topic
     topicId: {
       type: DataTypes.INTEGER,
       primaryKey: true,

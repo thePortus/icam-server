@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with starting institution data.
+ * @author David J. Thomas
+ */
+
 const institutions = require('./import/data/institutions.json');
 
 module.exports = {

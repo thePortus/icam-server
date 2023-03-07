@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with starting geography data.
+ * @author David J. Thomas
+ */
+
 const geographies = require('./import/data/geographies.json');
 
 module.exports = {

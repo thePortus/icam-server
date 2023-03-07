@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with starting presentation data.
+ * @author David J. Thomas
+ */
+
 const presentations = require('./import/data/presentations.json');
 
 module.exports = {

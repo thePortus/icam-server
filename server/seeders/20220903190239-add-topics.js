@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with starting topic data.
+ * @author David J. Thomas
+ */
+
 const topics = require('./import/data/topics.json');
 
 module.exports = {

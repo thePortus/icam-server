@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with links between presentations and topics.
+ * @author David J. Thomas
+ */
+
 const presentationTopics = require('./import/data/presentation-topics.json');
 
 module.exports = {

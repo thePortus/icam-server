@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with links between conferences and people.
+ * @author David J. Thomas
+ */
+
 const peopleParticipating= require('./import/data/people-participating.json');
 
 module.exports = {

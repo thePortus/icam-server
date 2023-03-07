@@ -1,3 +1,8 @@
+/**
+ * @file Controller for modifying topics.
+ * @author David J. Thomas
+ */
+
 const db = require('../models');
 const Op = db.Sequelize.Op;
 

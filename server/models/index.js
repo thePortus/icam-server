@@ -1,3 +1,10 @@
+/**
+ * @file Configures database connection for models, gathers
+ * models together in one location, and calls their respective
+ * association functions.
+ * @author David J. Thomas
+ */
+
 const dbConfig = require('../config/db.config.js');
 const Sequelize = require('sequelize');
 

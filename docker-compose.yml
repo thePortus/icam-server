@@ -50,6 +50,7 @@ services:
       volumes:
         - web-root:/var/www/html
         - ./nginx:/etc/nginx/conf.d
+        # if developing locally, comment out certbot and dhparam volumes
         - certbot-etc:/etc/letsencrypt
         - certbot-var:/var/lib/letsencrypt
         - ./certbot/www:/var/www/certbot/:ro
@@ -58,6 +59,7 @@ services:
         - nodejs
       networks:
         - server-network
+    # if developing locally, comment out certbot service
     certbot:
       image: certbot/certbot
       container_name: certbot
@@ -73,6 +75,7 @@ services:
 
 volumes:
   db:
+  # if developing locally, comment out the certbot-*, web-root, and dhparam volumes
   certbot-etc:
   certbot-var:
   web-root:

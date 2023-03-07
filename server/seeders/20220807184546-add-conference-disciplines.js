@@ -1,3 +1,8 @@
+/**
+* @file Seeds the database with starting links between conferences and disciplines.
+* @author David J. Thomas
+*/
+
 const conferencesDisciplines = require('./import/data/conference-disciplines.json');
 
 module.exports = {

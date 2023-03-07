@@ -1,20 +1,21 @@
+/**
+ * @file Defines the model that associates conferences and institutions
+ * @author David J. Thomas
+ */
+
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class ConferenceInstitution extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
+      // conferences
       ConferenceInstitution.belongsTo(models.conferences, {
         foreignKey: 'conferenceId',
         as: 'conference',
         onDelete: 'NO ACTION',
       });
+      // institutions
       ConferenceInstitution.belongsTo(models.institutions, {
         foreignKey: 'institutionId',
         as: 'institution',
@@ -23,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ConferenceInstitution.init({
+    // id of conference
     conferenceId:  {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -31,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
     },
+    // id of institution
     institutionId:  {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -39,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
     },
+    // flags, whether institution acted as host, sponsor, or society
     host: DataTypes.BOOLEAN,
     sponsor: DataTypes.BOOLEAN,
     society: DataTypes.BOOLEAN

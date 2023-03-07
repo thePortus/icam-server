@@ -1,14 +1,13 @@
+/**
+ * @file Defines the model for disciplines.
+ * @author David J. Thomas
+ */
+
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Discipline extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // conferences
       Discipline.belongsToMany(models.conferences, {
@@ -19,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Discipline.init({
+    // title of discipline
     title: DataTypes.STRING
   }, {
     sequelize,

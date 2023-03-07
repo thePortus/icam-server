@@ -1,14 +1,13 @@
+/**
+ * @file Defines the model for panels
+ * @author David J. Thomas
+ */
+
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Panel extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // conferences
       Panel.belongsTo(models.conferences, {

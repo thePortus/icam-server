@@ -1,25 +1,27 @@
+/**
+ * @file Defines the model that associates panel chairs with institutions.
+ * @author David J. Thomas
+ */
+
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class ChairAffiliation extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
+      // panels
       ChairAffiliation.belongsTo(models.panels, {
         foreignKey: 'panelId',
         as: 'panel',
         onDelete: 'CASCADE',
       });
+      // people
       ChairAffiliation.belongsTo(models.people, {
         foreignKey: 'chairId',
         as: 'chair',
         onDelete: 'CASCADE',
       });
+      // institutions
       ChairAffiliation.belongsTo(models.institutions, {
         foreignKey: 'institutionId',
         as: 'institution',
@@ -28,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ChairAffiliation.init({
+    // id of panel
     panelId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -36,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       }
     },
+    // id of person chairing
     chairId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -44,6 +48,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       }
     },
+    // id of institution
     institutionId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -52,6 +57,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       }
     },
+    // department (can be blank string)
     department: {
       type: DataTypes.STRING
     }

@@ -1,3 +1,7 @@
+/**
+ * @file Seeds the database with starting panel data.
+ * @author David J. Thomas
+ */
 const panels = require('./import/data/panels.json');
 
 module.exports = {

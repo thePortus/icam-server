@@ -1,3 +1,8 @@
+/**
+ * @file Creates the n:m ParticipantAffiliations table in the database
+ * @author David J. Thomas
+ */
+
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -9,13 +14,28 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       conferenceId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Conferences',
+          key: 'id'
+        },
+        onDelete: 'CASCADE'
       },
       personId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'People',
+          key: 'id'
+        },
+        onDelete: 'CASCADE'
       },
       institutionId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Institutions',
+          key: 'id'
+        },
+        onDelete: 'CASCADE'
       },
       department: {
         type: Sequelize.STRING

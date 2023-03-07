@@ -1,3 +1,8 @@
+/**
+ * @file Controller for registering, updating, and logging users in.
+ * @author David J. Thomas
+ */
+
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
 const db = require('../models');

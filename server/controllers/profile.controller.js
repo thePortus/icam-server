@@ -1,3 +1,8 @@
+/**
+ * @file Controller for getting user profile data
+ * @author David J. Thomas
+ */
+
 const jwt = require('jsonwebtoken');
 
 const config = require('../config/db.config');

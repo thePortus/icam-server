@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with links between presentations and geographies.
+ * @author David J. Thomas
+ */
+
 const presentationGeographies = require('./import/data/presentation-geographies.json');
 
 module.exports = {

@@ -1,3 +1,9 @@
+/**
+ * @file Provides middleware (implemented in routes) that ensures
+ * that users don't spam requests.
+ * @author David J. Thomas
+ */
+
 const rateLimit = require('express-rate-limit');
 
 const allowlist = ['127.0.0.1'];

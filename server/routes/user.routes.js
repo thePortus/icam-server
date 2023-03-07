@@ -1,3 +1,8 @@
+/**
+ * @file Routes for registering, updating, and logging users in.
+ * @author David J. Thomas
+ */
+
 const auth = require('../middleware/auth');
 const limitRate = require('../middleware/limit-rate');
 

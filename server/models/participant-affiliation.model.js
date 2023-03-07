@@ -1,26 +1,27 @@
+/**
+ * @file Defines the model that associates presenters with institutions.
+ * @author David J. Thomas
+ */
+
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class ParticipantAffiliation extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      // conferences
       ParticipantAffiliation.belongsTo(models.conferences, {
         foreignKey: 'conferenceId',
         as: 'conference',
         onDelete: 'CASCADE'
       });
+      // people
       ParticipantAffiliation.belongsTo(models.people, {
         foreignKey: 'personId',
         as: 'participant',
         onDelete: 'CASCADE'
       });
+      // institutions
       ParticipantAffiliation.belongsTo(models.institutions, {
         foreignKey: 'institutionId',
         as: 'institution',
@@ -29,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ParticipantAffiliation.init({
+    // id of conference
     conferenceId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -38,6 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       allowNull: false,
     },
+    // id of participant
     personId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -47,6 +50,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       allowNull: false,
     },
+    // id of institution
     institutionId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -55,6 +59,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       }
     },
+    // department (can be blank string)
     department: DataTypes.STRING
   }, {
     sequelize,

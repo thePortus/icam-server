@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with starting people data.
+ * @author David J. Thomas
+ */
+
 const people = require('./import/data/people.json');
 
 module.exports = {

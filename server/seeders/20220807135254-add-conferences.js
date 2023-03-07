@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with starting conference data.
+ * @author David J. Thomas
+ */
+
 const conferences = require('./import/data/conferences.json');
 
 module.exports = {

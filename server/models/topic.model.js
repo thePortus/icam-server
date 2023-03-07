@@ -1,14 +1,13 @@
+/**
+ * @file Defines the model for topics
+ * @author David J. Thomas
+ */
+
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Topic extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // presentations
       Topic.belongsToMany(models.presentations, {
@@ -19,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Topic.init({
+    // title of topic
     title: DataTypes.STRING
   }, {
     sequelize,

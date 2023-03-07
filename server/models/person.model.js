@@ -1,14 +1,13 @@
+/**
+ * @file Defines the model for people
+ * @author David J. Thomas
+ */
+
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Person extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // presentations
       Person.belongsToMany(models.presentations, {
@@ -29,17 +28,19 @@ module.exports = (sequelize, DataTypes) => {
         as: 'participantConferences',
         foreignKey: 'personId',
       });
-      // institutions
+      // institutions (chair)
       Person.belongsToMany(models.institutions, {
         through: 'ChairAffiliation',
         foreignKey: 'chairId',
         as: 'affiliationsAsChair'
       });
+      // institutions (presenter)
       Person.belongsToMany(models.institutions, {
         through: 'PresenterAffiliation',
         foreignKey: 'presenterId',
         as: 'affiliationsAsPresenter'
       });
+      // institutions (participant)
       Person.belongsToMany(models.institutions, {
         through: 'ParticipantAffiliation',
         foreignKey: 'personId',
@@ -48,7 +49,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Person.init({
+    // name of person
     name: DataTypes.STRING,
+    // optional orcid of person
     orcid: DataTypes.STRING
   }, {
     sequelize,

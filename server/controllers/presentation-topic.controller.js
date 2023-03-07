@@ -1,3 +1,8 @@
+/**
+ * @file Controller for modifying links between presentations and topics.
+ * @author David J. Thomas
+ */
+
 const db = require('../models');
 const Op = db.Sequelize.Op;
 

@@ -1,3 +1,8 @@
+/**
+ * @file Routes for modifying links between conferences and participants.
+ * @author David J. Thomas
+ */
+
 const auth = require('../middleware/auth');
 const limitRate = require('../middleware/limit-rate');
 

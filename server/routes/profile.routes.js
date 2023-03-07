@@ -1,3 +1,8 @@
+/**
+ * @file Routes for getting user profile data
+ * @author David J. Thomas
+ */
+
 const auth = require('../middleware/auth');
 const limitRate = require('../middleware/limit-rate');
 

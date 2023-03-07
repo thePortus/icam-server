@@ -1,14 +1,13 @@
+/**
+ * @file Defines the model for institutions.
+ * @author David J. Thomas
+ */
+
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Institution extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // location
       Institution.belongsTo(models.locations, {
@@ -21,17 +20,19 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'institutionId',
         as: 'conferences'
       });
-      // people
+      // people (chairs)
       Institution.belongsToMany(models.people, {
         through: 'ChairAffiliation',
         foreignKey: 'institutionId',
         as: 'chairs'
       });
+      // people (presenters)
       Institution.belongsToMany(models.people, {
         through: 'PresenterAffiliation',
         foreignKey: 'institutionId',
         as: 'presenters'
       });
+      // people (participants)
       Institution.belongsToMany(models.people, {
         through: 'ParticipantAffiliation',
         foreignKey: 'institutionId',
@@ -40,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Institution.init({
+    // id of institution's location
     locationId: {
       type: DataTypes.INTEGER,
       references: {
@@ -47,8 +49,11 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
     },
+    // title of institution
     title: DataTypes.STRING,
+    // type of institution (e.g. University, College, et c.)
     type: DataTypes.STRING,
+    // funding of institution (e.g. Public, Private)
     funding: DataTypes.STRING
   }, {
     sequelize,

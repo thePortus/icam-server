@@ -1,14 +1,13 @@
+/**
+ * @file Defines the model of locations.
+ * @author David J. Thomas
+ */
+
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Location extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // institutions
       Location.hasMany(models.institutions, {
@@ -23,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Location.init({
+    // title of location (can be custom, other than city/state)
     title: DataTypes.STRING,
+    // geography information
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     country: DataTypes.STRING

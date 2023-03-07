@@ -1,14 +1,13 @@
+/**
+ * @file Defines the model that presenters with their presentations
+ * @author David J. Thomas
+ */
+
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class PersonPresenting extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // people
       PersonPresenting.belongsTo(models.people, {
@@ -25,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   PersonPresenting.init({
+    // id of presentation
     presentationId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
     },
+    // id of person
     personId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -41,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
     },
+    // optional name (if different in this appearance than canonical name)
     name: DataTypes.STRING
   }, {
     sequelize,

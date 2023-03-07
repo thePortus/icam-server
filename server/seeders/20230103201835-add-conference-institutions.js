@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with links conferences and institutions.
+ * @author David J. Thomas
+ */
+
 const conferencesInstitutions = require('./import/data/conference-institutions.json');
 
 module.exports = {

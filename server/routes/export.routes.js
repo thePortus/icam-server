@@ -1,3 +1,8 @@
+/**
+ * @file Routes for exporting database data for backup
+ * @author David J. Thomas
+ */
+
 const auth = require('../middleware/auth');
 const limitRate = require('../middleware/limit-rate');
 

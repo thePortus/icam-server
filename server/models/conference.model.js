@@ -1,7 +1,11 @@
+/**
+ * @file Defines the model for conferences.
+ * @author David J. Thomas
+ */
+
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Conference extends Model {
     /**
@@ -42,6 +46,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Conference.init({
+    // id of location
     locationId: {
       type: DataTypes.INTEGER,
       references: {
@@ -49,7 +54,9 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
     },
+    // title of the conference
     title: DataTypes.STRING,
+    // start & end dates
     year: DataTypes.INTEGER,
     startMonth: DataTypes.INTEGER,
     startDay: DataTypes.INTEGER,

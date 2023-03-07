@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with starting discipline data.
+ * @author David J. Thomas
+ */
+
 const disciplines = require('./import/data/disciplines.json');
 
 module.exports = {

@@ -1,3 +1,7 @@
+/**
+ * @file Seeds the database with starting location data.
+ * @author David J. Thomas
+ */
 const locations = require('./import/data/locations.json');
 
 module.exports = {

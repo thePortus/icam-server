@@ -1,3 +1,8 @@
+/**
+ * @file Seeds the database with starting site owner data.
+ * @author David J. Thomas
+ */
+
 const md5 = require('md5');
 
 const config = require('../config/db.config.js');

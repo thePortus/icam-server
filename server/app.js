@@ -1,3 +1,11 @@
+/**
+ * @file Main app script. Sets favicon and cors. Allows JSON content.
+ * Sets the '/' route to serve static welcome page, and all other routes
+ * to be defined by the `routes/` directory. Starts listening on
+ * specifiedi port.
+ * @author David J. Thomas
+ */
+
 const express = require('express');
 const cors = require('cors');
 const favicon = require('serve-favicon');

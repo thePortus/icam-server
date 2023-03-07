@@ -1,5 +1,9 @@
-const presenterAffiliations = require('./import/data/presenter-affiliations.json');
+/**
+ * @file Seeds the database with links between people and institutions, as presenters
+ * @author David J. Thomas
+ */
 
+const presenterAffiliations = require('./import/data/presenter-affiliations.json');
 
 module.exports = {
   async up (queryInterface, Sequelize) {
