@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       // people
       PresenterAffiliation.belongsTo(models.people, {
-        foreignKey: 'personId',
+        foreignKey: 'presenterId',
         as: 'presenter',
         onDelete: 'CASCADE'
       });
