@@ -48,9 +48,9 @@ services:
         - 80:80
         - 443:443
       volumes:
-        - web-root:/var/www/html
         - ./nginx:/etc/nginx/conf.d
-        # if developing locally, comment out certbot and dhparam volumes
+        # if developing locally, comment out web-root certbot and dhparam volumes
+        - web-root:/var/www/html
         - certbot-etc:/etc/letsencrypt
         - certbot-var:/var/lib/letsencrypt
         - ./certbot/www:/var/www/certbot/:ro
@@ -59,7 +59,7 @@ services:
         - nodejs
       networks:
         - server-network
-    # if developing locally, comment out certbot service
+    # if developing locally, comment out certbot service and subheadings (down to the command)
     certbot:
       image: certbot/certbot
       container_name: certbot
@@ -75,7 +75,7 @@ services:
 
 volumes:
   db:
-  # if developing locally, comment out the certbot-*, and dhparam volumes (and subheadings). LEAVE web-root
+  # if developing locally, comment out certbot-etc, certbot-var, dhparam , and web-root volumes (and subheadings)
   certbot-etc:
   certbot-var:
   dhparam:
