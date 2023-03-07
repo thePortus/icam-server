@@ -75,22 +75,22 @@ services:
 
 volumes:
   db:
-  # if developing locally, comment out the certbot-*, web-root, and dhparam volumes
+  # if developing locally, comment out the certbot-*, and dhparam volumes (and subheadings). LEAVE web-root
   certbot-etc:
   certbot-var:
-  web-root:
-    driver: local
-    driver_opts:
-      type: none
-      # PUT YOUR USER NAME / PROJECT FOLDER BELOW
-      device: /home/YOUR_USERNAME/icam-server/server/pages/
-      o: bind
   dhparam:
     driver: local
     driver_opts:
       type: none
       # PUT YOUR USERNAME / PROJECT FOLDER BELOW
       device: /home/YOUR_USERNAME/icam-server/dhparam/
+      o: bind
+  web-root:
+    driver: local
+    driver_opts:
+      type: none
+      # PUT YOUR USER NAME / PROJECT FOLDER BELOW
+      device: /home/YOUR_USERNAME/icam-server/server/pages/
       o: bind
 
 networks:
