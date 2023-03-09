@@ -10,12 +10,12 @@ module.exports = {
     for (const personParticipating of peopleParticipating) {
       await queryInterface.bulkInsert('PersonParticipatings', [
           {
-            conferenceId: personPresenting.conferenceId,
-            personId: personPresenting.personId,
-            name: personPresenting.name || null,
-            role: personPresenting.role || null,
-            createdAt: personPresenting.createdAt? new Date(personPresenting.createdAt) : new Date(),
-            updatedAt: personPresenting.updatedAt? new Date(personPresenting.updatedAt) : new Date(),
+            conferenceId: personParticipating.conferenceId,
+            personId: personParticipating.personId,
+            name: personParticipating.name || null,
+            role: personParticipating.role || null,
+            createdAt: personParticipating.createdAt? new Date(personParticipating.createdAt) : new Date(),
+            updatedAt: personParticipating.updatedAt? new Date(personParticipating.updatedAt) : new Date(),
           },
         ],
       {});
