@@ -146,6 +146,7 @@ exports.findAll = (req, res) => {
           model: Conference,
           as: 'participantConferences',
           attributes: ['id', 'title'],
+          where: conferenceWhere,
           required: conferenceWhere.title !== undefined
         }, {
           model: Institution,
