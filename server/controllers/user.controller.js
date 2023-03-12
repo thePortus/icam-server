@@ -28,7 +28,6 @@ exports.findAll = (req, res) => {
   var condition = username ? { username: { [Op.like]: `%${username}%` } } : null;
   let { limit, offset } = getPagination(page, size);
   // if no page or size values provided, return ever item, with no includes (for quick reference lists)
-  //console.log('==============')
   if (page === undefined || size === undefined) {
     User.findAll({
       where: condition

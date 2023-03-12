@@ -105,7 +105,6 @@ exports.findAll = (req, res) => {
   }
   // otherwise return full data for specified items
   else {
-    let conferenceWhere = {};
     // build SQL for custom filtering
     Panel.findAndCountAll({
       where,

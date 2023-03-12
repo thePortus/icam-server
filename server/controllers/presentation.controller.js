@@ -134,7 +134,7 @@ exports.findAll = (req, res) => {
       });
   }
   // otherwise return full data for specified items
-  else { 
+  else {
     Presentation.findAndCountAll({
       where,
       limit,
@@ -145,7 +145,7 @@ exports.findAll = (req, res) => {
         model: Panel,
         as: 'panel',
         where: panelWhere,
-        required: panelWhere.title !== undefined,
+        required: panelWhere.title !== undefined || conferenceWhere !== undefined,
         include: [{
           model: Conference,
           as: 'conference',
