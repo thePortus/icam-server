@@ -13,6 +13,7 @@ module.exports = {
             presentationId: personPresenting.presentationId,
             personId: personPresenting.personId,
             name: personPresenting.name || null,
+            isRespondent: personPresenting.isRespondent || false,
             createdAt: personPresenting.createdAt? new Date(personPresenting.createdAt) : new Date(),
             updatedAt: personPresenting.updatedAt? new Date(personPresenting.updatedAt) : new Date(),
           },

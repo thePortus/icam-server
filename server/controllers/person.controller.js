@@ -217,7 +217,7 @@ exports.findOne = (req, res) => {
           }
         ],
         through: {
-          attributes: ['presentationId', 'personId', 'name'],
+          attributes: ['presentationId', 'personId', 'name', 'isRespondent'],
           as: 'presenterLink'
         }
       }, {
