@@ -43,7 +43,8 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     // optional name (if different in this appearance than canonical name)
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    isRespondent: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'PersonPresenting',

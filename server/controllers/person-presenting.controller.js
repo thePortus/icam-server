@@ -28,7 +28,8 @@ exports.create = (req, res) => {
   const requestObj = {
     presentationId: req.body.presentationId,
     personId: req.body.personId,
-    name: req.body.name || null
+    name: req.body.name || null,
+    isRespondent: req.body.isRespondent || false
   };
   // save item in the database
   PersonPresenting.create(requestObj)
