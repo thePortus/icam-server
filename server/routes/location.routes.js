@@ -19,7 +19,5 @@ module.exports = app => {
   router.put('/:id', limitRate, auth.verifyAdminToken, controller.update);
   // Delete an item
   router.delete('/:id', limitRate, auth.verifyAdminToken, controller.delete);
-  // Delete all items
-  router.delete('/', limitRate, auth.verifyAdminToken, controller.deleteAll);
   app.use('/api/locations', router);
 };

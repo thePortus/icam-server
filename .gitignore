@@ -3,6 +3,7 @@
 Thumbs.db
 
 certbot/
+*/coverage/
 
 # === IDEs and editors ===
 /.idea

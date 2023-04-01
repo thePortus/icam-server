@@ -15,7 +15,5 @@ module.exports = app => {
   router.get('/', controller.findAll);
   // Retrieve a single item
   router.delete('/:panelId/:personId', limitRate, auth.verifyAdminToken, controller.delete);
-  // Delete all items
-  router.delete('/', limitRate, auth.verifyAdminToken, controller.deleteAll);
   app.use('/api/people-chairing', router);
 };

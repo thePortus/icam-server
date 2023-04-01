@@ -183,20 +183,3 @@ exports.delete = (req, res) => {
       });
     });
 };
-
-// Delete all items from the database.
-exports.deleteAll = (req, res) => {
-  Topic.destroy({
-    where: {},
-    truncate: false
-  })
-    .then(nums => {
-      res.send({ message: `${nums} topics were deleted successfully!` });
-    })
-    .catch(err => {
-      res.send({
-        message:
-          err.message || 'Some error occurred while removing all topics.'
-      });
-    });
-};
