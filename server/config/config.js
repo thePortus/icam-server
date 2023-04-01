@@ -11,7 +11,7 @@ module.exports = {
     'password': process.env.DB_PASSWORD || '123456',
     'database': process.env.DB_NAME || 'icam',
     'port': process.env.DB_PORT || 3306,
-    'host': process.env.DB_HOST || 'mysqldb',
+    'host': process.env.DB_HOST || '127.0.0.1',
     'dialect': 'mysql'
   },
   'test': {
@@ -19,7 +19,7 @@ module.exports = {
     'password': process.env.DB_PASSWORD || '123456',
     'database': process.env.DB_NAME || 'icam',
     'port': process.env.DB_PORT || 3306,
-    'host': process.env.DB_HOST || 'mysqldb',
+    'host': process.env.DB_HOST || '127.0.0.1',
     'dialect': 'mysql'
   },
   'production': {
@@ -27,7 +27,7 @@ module.exports = {
     'password': process.env.DB_PASSWORD || '123456',
     'database': process.env.DB_NAME || 'icam',
     'port': process.env.DB_PORT || 3306,
-    'host': process.env.DB_HOST || 'mysqldb',
+    'host': process.env.DB_HOST || '127.0.0.1',
     'dialect': 'mysql'
   }
 };

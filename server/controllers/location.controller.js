@@ -186,20 +186,3 @@ exports.delete = (req, res) => {
       });
     });
 };
-
-// Delete all items from the database.
-exports.deleteAll = (req, res) => {
-  Location.destroy({
-    where: {},
-    truncate: false
-  })
-    .then(nums => {
-      res.send({ message: `${nums} locations were deleted successfully!` });
-    })
-    .catch(err => {
-      res.send({
-        message:
-          err.message || 'Some error occurred while removing all locations.'
-      });
-    });
-};

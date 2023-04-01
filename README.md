@@ -68,6 +68,25 @@ sudo openssl dhparam -out /home/YOUR_USERNAME/icam-server/dhparam/dhparam-2048.p
 
 Finally, modify the `nginx/nginx.conf` file and uncomment the lower server block. MAKE SURE to replace values with your domains. Then restart the server with `docker compose restart`.
 
-That's it, the server should be up an running.
+That's it, the server should be up and running.
 
 If you have problems and the docker container keeps restarting, the certbot might not have run correctly. To fix this, first, bring down the container with `docker compose down`. Then, re-comment out the SSH lines in your `nginx/nginx.conf` file. Now, bring the image back up with `docker compose up -d`. Then run the command `docker compose run --rm certbot certonly --webroot --webroot-path /var/www/html/ --email sample@your_domain --agree-tos --no-eff-email -d your_domain -d www.your_domain`. Once it is complete, un-comment out the `nginx/nginx.conf` file and `docker compose up -d` to get it started.
+
+## Local Development
+
+To develop locally, if you want to use docker, comment out the lines indicated for local development in `docker-compose.yml`. Then launch with `docker compose up -d`.
+
+For vanilla npm operation, move inside the server directory and start the app. First, however, you must have MySql installed locally, and have set up a database, preferably named `icam`, and created a user with full privileges on it named `icamowner` with the password `password`.
+
+ ``` sh
+ cd server
+npm start
+```
+
+To run testing...
+
+``` sh
+npm test
+```
+
+That's it!

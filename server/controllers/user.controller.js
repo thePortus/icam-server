@@ -114,19 +114,19 @@ exports.register = (req, res) => {
   // Validate request
   if (!req.body.username) {
     res.send({
-      message: 'Must contain an \'username\'!'
+      message: 'Must contain a \'username\'!'
     });
     return;
   }
   if (!req.body.email) {
     res.send({
-      message: 'Must contain an \'email\' number!'
+      message: 'Must contain an \'email\'!'
     });
     return;
   }
   if (!req.body.password) {
     res.send({
-      message: 'Must contain an \'password\' number!'
+      message: 'Must contain a \'password\'!'
     });
     return;
   }
