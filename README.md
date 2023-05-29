@@ -48,7 +48,7 @@ docker ps
 # shell into the server container
 docker exec -it SERVER_CONTAINER_NAME sh
 # run the server seeders
-source migrate
+source migrate.sh
 # exit out of container shell
 exit
 ```
