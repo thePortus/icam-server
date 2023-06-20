@@ -28,9 +28,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      isRespondent: {
-        type: Sequelize.BOOLEAN
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
