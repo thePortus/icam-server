@@ -53,6 +53,14 @@ source migrate.sh
 exit
 ```
 
+If you are running in a Windows environment, instead of running migrate.sh, run the following commands instead...
+
+``` sh
+./node_modules/.bin/sequelize db:create
+./node_modules/.bin/sequelize db:migrate
+./node_modules/.bin/sequelize db:seed:all
+```
+
 Now, set the certbot to autorenew.
 
 ``` sh

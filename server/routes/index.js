@@ -25,5 +25,7 @@ module.exports = app => {
   require('./presentation-geography.routes')(app);
   require('./person-participating.routes')(app);
   require('./participant-affiliation.routes')(app);
+  require('./person-responding.routes')(app);
+  require('./respondent-affiliation.routes')(app);
   require('./export.routes')(app);
 };

@@ -22,6 +22,12 @@ module.exports = (sequelize, DataTypes) => {
         as: 'chairedPanels',
         foreignKey: 'personId',
       });
+      // panels
+      Person.belongsToMany(models.panels, {
+        through: 'PersonRespondings',
+        as: 'respondentPanels',
+        foreignKey: 'personId',
+      });
       // conferences
       Person.belongsToMany(models.conferences, {
         through: 'PersonParticipating',
@@ -33,6 +39,12 @@ module.exports = (sequelize, DataTypes) => {
         through: 'ChairAffiliation',
         foreignKey: 'chairId',
         as: 'affiliationsAsChair'
+      });
+      // institutions (chair)
+      Person.belongsToMany(models.institutions, {
+        through: 'RespondentAffiliation',
+        foreignKey: 'respondentId',
+        as: 'affiliationsAsRespondent'
       });
       // institutions (presenter)
       Person.belongsToMany(models.institutions, {
