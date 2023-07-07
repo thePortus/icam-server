@@ -123,6 +123,10 @@ exports.findAll = (req, res) => {
           as: 'chairs',
           attributes: ['id', 'name']
         }, {
+          model: Person,
+          as: 'respondents',
+          attributes: ['id', 'name']
+        }, {
           model: Presentation,
           as: 'presentations',
           attributes: ['id', 'title'],
@@ -177,6 +181,21 @@ exports.findOne = (req, res) => {
           through: {
             attributes: ['chairId', 'panelId', 'institutionId', 'department'],
             as: 'chairAffiliationLink'
+          }
+        }]
+      }, {
+        model: Person,
+        as: 'respondents',
+        attributes: ['id', 'name'],
+        through: {
+          attributes: ['personId', 'panelId', 'title', 'name']
+        },
+        include: [{
+          model: Institution,
+          as: 'affiliationsAsRespondent',
+          through: {
+            attributes: ['respondentId', 'panelId', 'institutionId', 'department'],
+            as: 'respondentAffiliationLink'
           }
         }]
       }, {

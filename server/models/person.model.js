@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'chairId',
         as: 'affiliationsAsChair'
       });
-      // institutions (chair)
+      // institutions (respondent)
       Person.belongsToMany(models.institutions, {
         through: 'RespondentAffiliation',
         foreignKey: 'respondentId',

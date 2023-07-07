@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       });
       // people
       RespondentAffiliation.belongsTo(models.people, {
-        foreignKey: 'chairId',
-        as: 'chair',
+        foreignKey: 'respondentId',
+        as: 'respondent',
         onDelete: 'CASCADE',
       });
       // institutions
