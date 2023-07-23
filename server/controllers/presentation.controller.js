@@ -209,7 +209,7 @@ exports.findOne = (req, res) => {
       model: Person,
       as: 'presenters',
       through: {
-        attributes: ['presentationId', 'personId', 'name', 'isRespondent'],
+        attributes: ['presentationId', 'personId', 'name'],
         as: 'presenterLink'
       },
       include: [{

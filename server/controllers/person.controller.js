@@ -88,6 +88,12 @@ exports.findAll = (req, res) => {
         where: panelWhere,
         required: panelWhere.title !== undefined
       }, {
+        model: Panel,
+        as: 'respondentPanels',
+        attributes: ['id', 'title'],
+        where: panelWhere,
+        required: panelWhere.title !== undefined
+      }, {
         model: Presentation,
         as: 'presentations',
         attributes: ['id', 'title'],
@@ -126,6 +132,12 @@ exports.findAll = (req, res) => {
           where: panelWhere,
           required: panelWhere.title !== undefined
         }, {
+          model: Panel,
+          as: 'respondentPanels',
+          attributes: ['id', 'title'],
+          where: panelWhere,
+          required: panelWhere.title !== undefined
+        }, {
           model: Presentation,
           as: 'presentations',
           attributes: ['id', 'title'],
@@ -151,6 +163,9 @@ exports.findAll = (req, res) => {
         }, {
           model: Institution,
           as: 'affiliationsAsChair'
+        }, {
+          model: Institution,
+          as: 'affiliationsAsRespondent'
         }, {
           model: Institution,
           as: 'affiliationsAsPresenter'
@@ -192,6 +207,20 @@ exports.findOne = (req, res) => {
           as: 'chairPanelLink'
         },
       }, {
+        model: Panel,
+        as: 'respondentPanels',
+        attributes: ['id', 'title'],
+        include: [
+          {
+            model: Conference,
+            as: 'conference'
+          }
+        ],
+        through: {
+          attributes: ['panelId', 'personId', 'name', 'title'],
+          as: 'respondentPanelLink'
+        },
+      }, {
         model: Presentation,
         as: 'presentations',
         attributes: ['id', 'title'],
@@ -217,7 +246,7 @@ exports.findOne = (req, res) => {
           }
         ],
         through: {
-          attributes: ['presentationId', 'personId', 'name', 'isRespondent'],
+          attributes: ['presentationId', 'personId', 'name'],
           as: 'presenterLink'
         }
       }, {
@@ -234,6 +263,13 @@ exports.findOne = (req, res) => {
         through: {
           attributes: ['chairId', 'panelId', 'institutionId', 'department'],
           as: 'chairAffiliationLink'
+        }
+      }, {
+        model: Institution,
+        as: 'affiliationsAsRespondent',
+        through: {
+          attributes: ['respondentId', 'panelId', 'institutionId', 'department'],
+          as: 'respondentAffiliationLink'
         }
       }, {
         model: Institution,

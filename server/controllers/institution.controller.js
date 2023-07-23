@@ -128,6 +128,10 @@ exports.findAll = (req, res) => {
         },
         {
           model: Person,
+          as: 'respondents'
+        },
+        {
+          model: Person,
           as: 'presenters'
         },
         {
@@ -168,6 +172,10 @@ exports.findOne = (req, res) => {
       {
         model: Person,
         as: 'chairs'
+      },
+      {
+        model: Person,
+        as: 'respondents'
       },
       {
         model: Person,

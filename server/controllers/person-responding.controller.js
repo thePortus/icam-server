@@ -1,19 +1,19 @@
 /**
- * @file Controller for modifying links between presentations and presenters.
+ * @file Controller for modifying links between panels and respondents
  * @author David J. Thomas
  */
 
 const db = require('../models');
 const Op = db.Sequelize.Op;
 
-const PersonPresenting = db.peoplePresenting;
+const PersonResponding = db.peopleResponding;
 
 // create and save a new item
 exports.create = (req, res) => {
   var errorMsgs = [];
   // validate request
-  if (!req.body.presentationId) {
-    errorMsgs.push('Must contain a \'presentationId\' field!');
+  if (!req.body.panelId) {
+    errorMsgs.push('Must contain a \'panelId\' field!');
   }
   if (!req.body.personId) {
     errorMsgs.push('Must contain a \'personId\' field!');
@@ -26,19 +26,20 @@ exports.create = (req, res) => {
     return;
   }
   const requestObj = {
-    presentationId: req.body.presentationId,
+    panelId: req.body.panelId,
     personId: req.body.personId,
-    name: req.body.name || null
+    name: req.body.name || null,
+    title: req.body.title || null,
   };
   // save item in the database
-  PersonPresenting.create(requestObj)
+  PersonResponding.create(requestObj)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.send({
         message:
-          err.message || 'Some error occurred while creating the person-presenting.'
+          err.message || 'Some error occurred while creating the person-responding.'
       });
     });
 };
@@ -58,7 +59,7 @@ exports.findAll = (req, res) => {
   let { limit, offset } = getPagination(page, size);
   // if no page or size values provided, return ever item, with no includes (for quick reference lists)
   if (page === undefined || size === undefined) {
-    PersonPresenting.findAll({
+    PersonResponding.findAll({
       where: condition
     })
       .then(data => {
@@ -73,7 +74,7 @@ exports.findAll = (req, res) => {
   }
   // otherwise return full data for specified items
   else {
-    PersonPresenting.findAndCountAll({
+    PersonResponding.findAndCountAll({
       where: condition,
       limit,
       offset,
@@ -85,7 +86,7 @@ exports.findAll = (req, res) => {
       .catch(err => {
         res.send({
           message:
-            err.message || 'Some error occurred while retrieving people-chairing.'
+            err.message || 'Some error occurred while retrieving people-responding.'
         });
       });
   }
@@ -93,25 +94,25 @@ exports.findAll = (req, res) => {
 
 // delete an item with the specified id in the request
 exports.delete = (req, res) => {
-  const presentationId = req.params.presentationId;
+  const panelId = req.params.panelId;
   const personId = req.params.personId;
-  PersonPresenting.destroy({
-    where: { presentationId: presentationId, personId: personId }
+  PersonResponding.destroy({
+    where: { panelId: panelId, personId: personId }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: 'Person-presenting was deleted successfully!'
+          message: 'Person-responding was deleted successfully!'
         });
       } else {
         res.send({
-          message: `Cannot delete person-presenting with presentationId=${presentationId} and personId=${personId}. Maybe person-presenting was not found!`
+          message: `Cannot delete person-responding with panelId=${panelId} and personId=${personId}. Maybe person-responding was not found!`
         });
       }
     })
     .catch(err => {
       res.send({
-        message: err.message || 'Could not delete person-presenting with presentationId=' + presentationId + ' and personId=' + personId
+        message: err.message || 'Could not delete person-responding with panelId=' + panelId + ' and personId=' + personId
       });
     });
 };

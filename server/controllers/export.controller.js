@@ -25,6 +25,8 @@ const PresentationGeography = db.presentationGeographies;
 const PresentationTopic = db.presentationTopics;
 const PresenterAffiliation = db.presenterAffiliations;
 const ParticipantAfilliation = db.participantAffiliations;
+const PersonResponding = db.peopleResponding;
+const RespondantAffiliation = db.respondentAffiliations;
 
 // retrieve all items from the database.
 exports.findAll = (req, res) => {
@@ -89,29 +91,37 @@ exports.findAll = (req, res) => {
                                                                         .then(personParticipatingData => {
                                                                           ParticipantAfilliation.findAll()
                                                                             .then(participantAffilationData => {
-                                                                              // store all response data
-                                                                              responseData = {
-                                                                                conferences: conferenceData,
-                                                                                disciplines: disciplineData,
-                                                                                institutions: institutionData,
-                                                                                locations: locationData,
-                                                                                panels: panelData,
-                                                                                people: personData,
-                                                                                presentations: presentationData,
-                                                                                topics: topicData,
-                                                                                geographies: geographyData,
-                                                                                chairAffiliations: chairAffiliationData,
-                                                                                conferenceDisciplines: conferenceDisciplineData,
-                                                                                conferenceInstitutions: conferenceInstitutionData,
-                                                                                peopleChairing: personChairingData,
-                                                                                peoplePresenting: personPresentingData,
-                                                                                peopleParticipating: personParticipatingData,
-                                                                                presentationGeographies: presentationGeographyData,
-                                                                                presentationTopics: presentationTopicData,
-                                                                                presenterAffiliations: presenterAffiliationData,
-                                                                                participantAffiliations: participantAffilationData
-                                                                              };
-                                                                              res.send(responseData);
+                                                                              PersonResponding.findAll()
+                                                                                .then(personRespondingData => {
+                                                                                  RespondantAffiliation.findAll()
+                                                                                    .then(respondentAffiliationData => {
+                                                                                      // store all response data
+                                                                                      responseData = {
+                                                                                        conferences: conferenceData,
+                                                                                        disciplines: disciplineData,
+                                                                                        institutions: institutionData,
+                                                                                        locations: locationData,
+                                                                                        panels: panelData,
+                                                                                        people: personData,
+                                                                                        presentations: presentationData,
+                                                                                        topics: topicData,
+                                                                                        geographies: geographyData,
+                                                                                        chairAffiliations: chairAffiliationData,
+                                                                                        conferenceDisciplines: conferenceDisciplineData,
+                                                                                        conferenceInstitutions: conferenceInstitutionData,
+                                                                                        peopleChairing: personChairingData,
+                                                                                        peoplePresenting: personPresentingData,
+                                                                                        peopleParticipating: personParticipatingData,
+                                                                                        presentationGeographies: presentationGeographyData,
+                                                                                        presentationTopics: presentationTopicData,
+                                                                                        presenterAffiliations: presenterAffiliationData,
+                                                                                        participantAffiliations: participantAffilationData,
+                                                                                        peopleResponding: personRespondingData,
+                                                                                        respondentAffiliations: respondentAffiliationData
+                                                                                      };
+                                                                                      res.send(responseData);
+                                                                                });
+                                                                              });
                                                                             });
                                                                         });
                                                                     });

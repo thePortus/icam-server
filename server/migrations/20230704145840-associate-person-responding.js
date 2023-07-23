@@ -1,17 +1,18 @@
 /**
- * @file Creates the n:m PersonPresentings table in the database
+ * @file Creates the n:m PersonRespondings table in the database
  * @author David J. Thomas
  */
 
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('PersonPresentings', {
-      presentationId: {
+    await queryInterface.createTable('PersonRespondings', {
+      panelId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
+        allowNull: false,
         references: {
-          model: 'Presentations',
+          model: 'Panels',
           key: 'id'
         },
         onDelete: 'CASCADE'
@@ -19,6 +20,7 @@ module.exports = {
       personId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
+        allowNull: false,
         references: {
           model: 'People',
           key: 'id'
@@ -26,6 +28,9 @@ module.exports = {
         onDelete: 'CASCADE'
       },
       name: {
+        type: Sequelize.STRING
+      },
+      title: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -39,6 +44,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('PersonPresentings');
+    await queryInterface.dropTable('PersonRespondings');
   }
 };

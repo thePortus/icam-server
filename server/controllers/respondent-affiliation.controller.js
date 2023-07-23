@@ -1,22 +1,25 @@
 /**
- * @file Controller for modifying links between presentations and presenters.
+ * @file Controller for modifying links between panel respondents and institutions.
  * @author David J. Thomas
  */
 
 const db = require('../models');
 const Op = db.Sequelize.Op;
 
-const PersonPresenting = db.peoplePresenting;
+const RespondentAffiliation = db.respondentAffiliations;
 
 // create and save a new item
 exports.create = (req, res) => {
   var errorMsgs = [];
   // validate request
-  if (!req.body.presentationId) {
-    errorMsgs.push('Must contain a \'presentationId\' field!');
+  if (!req.body.panelId) {
+    errorMsgs.push('Must contain a \'panelId\' field!');
   }
-  if (!req.body.personId) {
-    errorMsgs.push('Must contain a \'personId\' field!');
+  if (!req.body.respondentId) {
+    errorMsgs.push('Must contain a \'respondentId\' field!');
+  }
+  if (!req.body.institutionId) {
+    errorMsgs.push('Must contain a \'institutionId\' field!');
   }
   if (errorMsgs.length > 0) {
     res.send({
@@ -26,19 +29,20 @@ exports.create = (req, res) => {
     return;
   }
   const requestObj = {
-    presentationId: req.body.presentationId,
-    personId: req.body.personId,
-    name: req.body.name || null
+    panelId: req.body.panelId,
+    respondentId: req.body.respondentId,
+    institutionId: req.body.institutionId,
+    department: req.body.department
   };
   // save item in the database
-  PersonPresenting.create(requestObj)
+  RespondentAffiliation.create(requestObj)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.send({
         message:
-          err.message || 'Some error occurred while creating the person-presenting.'
+          err.message || 'Some error occurred while creating the respoondent-affiliation.'
       });
     });
 };
@@ -58,7 +62,7 @@ exports.findAll = (req, res) => {
   let { limit, offset } = getPagination(page, size);
   // if no page or size values provided, return ever item, with no includes (for quick reference lists)
   if (page === undefined || size === undefined) {
-    PersonPresenting.findAll({
+    RespondentAffiliation.findAll({
       where: condition
     })
       .then(data => {
@@ -73,7 +77,7 @@ exports.findAll = (req, res) => {
   }
   // otherwise return full data for specified items
   else {
-    PersonPresenting.findAndCountAll({
+    RespondentAffiliation.findAndCountAll({
       where: condition,
       limit,
       offset,
@@ -85,7 +89,7 @@ exports.findAll = (req, res) => {
       .catch(err => {
         res.send({
           message:
-            err.message || 'Some error occurred while retrieving people-chairing.'
+            err.message || 'Some error occurred while retrieving respoondent-affiliations.'
         });
       });
   }
@@ -93,25 +97,26 @@ exports.findAll = (req, res) => {
 
 // delete an item with the specified id in the request
 exports.delete = (req, res) => {
-  const presentationId = req.params.presentationId;
-  const personId = req.params.personId;
-  PersonPresenting.destroy({
-    where: { presentationId: presentationId, personId: personId }
+  const panelId = req.params.panelId;
+  const respondentId = req.params.respondentId;
+  const institutionId = req.params.institutionId;
+  RespondentAffiliation.destroy({
+    where: { panelId: panelId, respondentId: respondentId, institutionId: institutionId }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: 'Person-presenting was deleted successfully!'
+          message: 'Respondent-affiliation was deleted successfully!'
         });
       } else {
         res.send({
-          message: `Cannot delete person-presenting with presentationId=${presentationId} and personId=${personId}. Maybe person-presenting was not found!`
+          message: `Cannot delete respoondent-affiliation with panelId=${panelId} and respondentId=${respondentId} and institutionId=${institutionId}. Maybe respoondent-affiliation was not found!`
         });
       }
     })
     .catch(err => {
       res.send({
-        message: err.message || 'Could not delete person-presenting with presentationId=' + presentationId + ' and personId=' + personId
+        message: err.message || 'Could not delete respoondent-affiliation with panelId=' + panelId + ' and respondentId=' + respondentId+ ' and institutionId=' + institutionId
       });
     });
 };

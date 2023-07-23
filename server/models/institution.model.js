@@ -26,6 +26,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'institutionId',
         as: 'chairs'
       });
+      // people (respondents)
+      Institution.belongsToMany(models.people, {
+        through: 'RespondentAffiliation',
+        foreignKey: 'institutionId',
+        as: 'respondents'
+      });
       // people (presenters)
       Institution.belongsToMany(models.people, {
         through: 'PresenterAffiliation',

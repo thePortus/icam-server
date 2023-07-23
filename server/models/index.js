@@ -50,6 +50,8 @@ db.topics = require('./topic.model.js')(sequelize, Sequelize);
 db.presentationTopics = require('./presentation-topic.model.js')(sequelize, Sequelize);
 db.geographies = require('./geography.model.js')(sequelize, Sequelize);
 db.presentationGeographies = require('./presentation-geography.model.js')(sequelize, Sequelize);
+db.peopleResponding = require('./person-responding.model.js')(sequelize, Sequelize);
+db.respondentAffiliations = require('./respondent-affiliation.model.js')(sequelize, Sequelize);
 
 // call association functions on all models and set fk constraints
 Object.keys(db).forEach(modelName => {

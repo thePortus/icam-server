@@ -14,10 +14,17 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: { name: 'conferenceId' },
         as: 'conference'
       });
-      // people
+      // people (chairs)
       Panel.belongsToMany(models.people, {
         through: 'PersonChairings',
         as: 'chairs',
+        foreignKey: 'panelId',
+        otherKey: 'personId',
+      });
+      // people (respondents)
+      Panel.belongsToMany(models.people, {
+        through: 'PersonRespondings',
+        as: 'respondents',
         foreignKey: 'panelId',
         otherKey: 'personId',
       });
